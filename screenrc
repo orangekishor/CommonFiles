@@ -1,0 +1,55 @@
+startup_message off
+vbell off
+
+shell -$SHELL
+shelltitle 'Shell'
+defscrollback 5024
+
+# Window numbering starts at 1, not 0.
+bind c screen 1
+bind 0 select 10
+escape ^aa
+# Look and feel
+#hardstatus alwayslastline '%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<  %=% [%{=b)%{Y}%l%{g}]'
+#hardstatus alwayslastline '[%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[ %m/%d %c:%s ]%{W}'
+#hardstatus alwayslastline '%{bk} [%{W}%H%{b}] [%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}]  %D %{w}%c'
+#hardstatus alwayslastline '%{bk}[ %{W}%H %{b}][ %{w}%l%{b} ]   %{b}[%{w} %D %d.%m %c:%s%{b} ]'
+hardstatus alwayslastline  '%{= kG} [ %{G}%H %{G}] %-Lw%{= kR}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
+# Our warning of activity
+
+# Left Right meta key mods
+#ALT-,. and ALT-<>
+bindkey '^[Od' prev
+bindkey '^[Oc' prev
+
+select 1
+
+autodetach      on
+
+
+# pgup pgdown
+#termcapinfo xterm*|rxvt* .ti@:te@.
+
+# Having this command in your .screenrc would bind the key sequence
+# C-a R. to the `su. command and give it an auto-title name of `root:..
+
+msgwait 15
+
+# termcap stuff
+#termcapinfo xterm     ti@:te@
+# make the cursor show up in red:
+#termcapinfo linux .ve=\E[?25h\E[?17;0;64c.
+
+termcapinfo xterm*|linux*|rxvt*|Eterm* OP
+termcapinfo xterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
+defhstatus "screen ^E (^Et) | $USER@^EH"
+
+bind = resize =
+bind + resize +1
+bind . resize -1
+
+screen -t   Shell 1 bash
+screen -t   Shell 2 bash
+screen -t   Shell 3 bash
+screen -t   Shell 4 bash
+screen -t   Shell 5 bash
