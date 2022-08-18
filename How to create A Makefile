@@ -1,0 +1,52 @@
+Steps:
+1. create directory named
+inc-> place all ".h" files inside this directory
+
+2. create directory named
+src-> place all ".c" files inside this directory
+
+3. create a directory name
+lib->place all library files inside this directory
+
+4. create an empty directory named "obj"
+
+5. create a file name "Makefile" , copy and paste below lines in it
+----------------------------------------------------------------------------------------------------
+INCDIR =./inc
+LIBDIR =./lib
+OBJDIR =./obj
+SRCDIR =./src
+
+CC=gcc
+CFLAGS=-I$(INCDIR)
+LIBS=-lstdc++
+
+_DEPS = *.hpp
+INC = $(patsubst %,$(INCDIR)/%,$(_DEPS))
+
+_OBJ = wrk_main.o
+OBJ = $(patsubst %,$(OBJDIR)/%,$(_OBJ))
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INC)
+    $(CC) -c -o $@ $< $(CFLAGS)
+
+wrk_exe: $(OBJ)
+    $(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+.PHONY: clean
+
+clean:
+    rm -f $(OBJDIR)/*.o *~ core $(INCDIR)/*~ wrk_exe
+  ---------------------------------------------------------------------------------------------------- 
+
+6. Make sure all the directories and Makefile are in same place
+
+7. To compile use command "make"
+
+8. To clean use command "make clean"
+
+9. To execute the binary use command "./wrk_exe" 
+
+10. You can rename "wrk_exe" to anyother name
+
+11. Enjoy!
